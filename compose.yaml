@@ -7,7 +7,7 @@ services:
             MERCURE_PUBLISHER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
             MERCURE_SUBSCRIBER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
             # Run "composer require symfony/orm-pack" to install and configure Doctrine ORM
-            DATABASE_URL: postgresql://${POSTGRES_USER:-pingu}:${POSTGRES_PASSWORD:-RGrLF75qrp5aA6wBdHwVXI3tKALDyg9v}@database:5432/${POSTGRES_DB:-bookapp_3brj}?serverVersion=${POSTGRES_VERSION:-16}&charset=${POSTGRES_CHARSET:-utf8}
+            DATABASE_URL: postgresql://${POSTGRES_USER:-pingu}:${POSTGRES_PASSWORD:-npg_R4FruiJHswx6}@database:5432/${POSTGRES_DB:-koyebdb}?serverVersion=${POSTGRES_VERSION:-16}&charset=${POSTGRES_CHARSET:-utf8}
             # Run "composer require symfony/mercure-bundle" to install and configure the Mercure integration
             MERCURE_URL: ${CADDY_MERCURE_URL:-http://php/.well-known/mercure}
             MERCURE_PUBLIC_URL: ${CADDY_MERCURE_PUBLIC_URL:-https://${SERVER_NAME:-localhost}:${HTTPS_PORT:-443}/.well-known/mercure}
@@ -40,9 +40,9 @@ services:
     database:
         image: postgres:${POSTGRES_VERSION:-16}-alpine
         environment:
-            POSTGRES_DB: ${POSTGRES_DB:-bookapp_3brj}
+            POSTGRES_DB: ${POSTGRES_DB:-koyebdb}
             # You should definitely change the password in production
-            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-RGrLF75qrp5aA6wBdHwVXI3tKALDyg9v}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-npg_R4FruiJHswx6}
             POSTGRES_USER: ${POSTGRES_USER:-pingu}
         healthcheck:
             test:
@@ -50,7 +50,7 @@ services:
                     "CMD",
                     "pg_isready",
                     "-d",
-                    "${POSTGRES_DB:-bookapp_3brj}",
+                    "${POSTGRES_DB:-koyebdb}",
                     "-U",
                     "${POSTGRES_USER:-pingu}",
                 ]
