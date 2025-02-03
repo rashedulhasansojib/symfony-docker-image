@@ -6,7 +6,7 @@ frankenphp {
 
 {$CADDY_EXTRA_CONFIG}
 
-# Site block
+# Site block for handling requests
 localhost {
 root /app/public
 encode zstd br gzip
@@ -15,7 +15,7 @@ vulcain
 
 {$CADDY_SERVER_EXTRA_DIRECTIVES}
 
-# Disable Topics tracking if not enabled explicitly: https://github.com/jkarlin/topics
+# Disable Topics tracking if not enabled explicitly
 header ?Permissions-Policy "browsing-topics=()"
 
 @phpRoute {
@@ -24,7 +24,7 @@ not file {path}
 rewrite @phpRoute index.php
 
 @frontController path index.php
-php @frontController
+php_fastcgi unix//var/run/php/php8.3-fpm.sock # Adjust PHP version and socket path if necessary
 
 file_server {
 hide *.php
