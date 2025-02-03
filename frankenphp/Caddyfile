@@ -30,4 +30,3 @@ php @frontController
 file_server {
 hide *.php
 }
-}
